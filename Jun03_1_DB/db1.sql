@@ -82,6 +82,8 @@ insert into jun03_snack values(jun03_snack_seq.nextval,
 '빈츠','롯데',4000,to_date('2024-06-06 14', 'YYYY-MM-DD HH24'));
 insert into jun03_snack values(jun03_snack_seq.nextval,
 '칸차','롯데',1500,to_date('2024-06-07 14', 'YYYY-MM-DD HH24'));
+insert into jun03_snack values(jun03_snack_seq.nextval,
+'몽쉘','롯데',4500,to_date('2024-06-07 14', 'YYYY-MM-DD HH24'));
 
 select * from jun03_snack
 
