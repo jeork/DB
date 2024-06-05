@@ -39,7 +39,7 @@ select * from beverage
 
 -- 3. 쿼리문 작성
 -- 전체 음료 기준 평균가보다 비싼 음료는 몇 종류?
-select b_name 
+select count(*) 
 	from beverage	
 	where b_price>(
 		select avg(b_price)
@@ -68,29 +68,29 @@ select avg(b_price)
 	
 -- 좌석이 90석 이상인 카페에서 파는 음료의 이름?
 select b_name
-	from beverage
-	where b_cafename in(
-		select c_name
-		from cafe
-		where c_seat >= 90
-	);
+from beverage
+where b_cafename in(
+	select c_name
+	from cafe
+	where c_seat >= 90
+);
 -- 전체 음료 기준 평균가 이하인 음료의 이름?
 select b_name
+from beverage
+where b_price <=(
+	select avg(b_price)
 	from beverage
-	where b_price <=(
-		select avg(b_price)
-		from beverage
-	);
+);
 -- 가장 비싼 음료를 파는 카페는 어디에 있는지?
 select c_address
-	from cafe
-	where c_name in(
-		select b_cafename
+from cafe
+where c_name in(
+	select b_cafename
+	from beverage
+	where b_price in(
+		select max(b_price)
 		from beverage
-		where b_price in(
-			select max(b_price)
-			from beverage
-		)
-	);
+	)
+);
 
 	
