@@ -217,10 +217,23 @@ from(
 		and c_no = f_no
 		and c_no = m_f_no
 		and f_no = m_f_no
-		order by m_price, m_name
+		order by m_price desc, m_name
 	)
 )
 where rn>=3 and rn<=8
 
 -- 김씨 성을 가진 사장님네 메뉴명,가격,사장님 이름,사장님 성별
 -- 가격 오름차순 => 2 ~ 3번만 조회
+select * 
+from(
+	select rownum rn, m_name, m_price, c_name, c_gender
+	from(
+		select m_name, m_price, f_name, c_name, c_gender
+		from jun05_menu, jun05_franchise, jun05_ceo
+		where m_f_no = f_no and f_ceo = c_no
+		and c_name like '김%'	
+		order by m_price
+	)
+)
+where rn between 2 and 3;
+
